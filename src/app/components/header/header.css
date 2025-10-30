@@ -1,23 +1,182 @@
 .navbar {
-    background-color:whitesmoke;
+    background-color: white;
     position: fixed;
-    top: 0%;
-    left: 0%;
+    top: 0;
+    left: 0;
     width: 100%;
     z-index: 10000;
-    height: 80px;
+    height: 60px; /* Reducimos la altura de la barra de navegación */
+    display: flex; /* Añadimos flexbox para centrar contenido */
+    align-items: center; /* Centra los items verticalmente en la navbar */
 }
-.navbar-brand{
-    color: black;
+
+/* Contenedor del logo para posicionarlo */
+/* Contenedor del logo para posicionarlo y la sombra */
+/* Contenedor del logo: Mantenemos el posicionamiento */
+/* Contenedor del logo: Ahora será más grande para albergar la sombra y el logo centrado */
+.logo-container {
+    position: absolute;
+    left: 20px;
+    top: 60px;
+    transform: translateY(-50%);
+    z-index: 10001;
+    
+    width: 150px; /* Hacemos el contenedor más grande que el logo */
+    height: 150px; /* Hacemos el contenedor más grande que el logo */
+    
+    display: flex; /* Para centrar la imagen dentro del contenedor */
+    justify-content: center;
+    align-items: center;
+    
+    /* Le damos un border-radius para que el contenedor tenga una forma circular si queremos */
+    border-radius: 50%; 
+    /* Y un background-color blanco temporal para ver la forma, luego lo puedes quitar */
+    /* background-color: white; */ 
 }
-.nav-link{
-    color: black;
+
+/* Pseudo-elemento para la sombra de fondo circular */
+.logo-container::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Centra el pseudo-elemento */
+    width: 100%; /* El pseudo-elemento toma el 100% del width del logo-container */
+    height: 100%; /* El pseudo-elemento toma el 100% del height del logo-container */
+    border-radius: 50%; /* Esto crea la forma de círculo para la sombra */
+    background-color: white; /* Color blanco para el fondo circular */
+    box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.8); /* Sombra sutil alrededor del círculo blanco */
+    z-index: -1; /* Lo enviamos detrás del logo */
+    transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* Transición para la sombra y color de fondo */
 }
-.container-fluid img{
-    width: 100px;
-    height: 100px;
+
+.logo-container img {
+    width: 120px; /* El tamaño de tu logo */
+    height: auto;
+    display: block;
+    margin-top: 0; /* Aseguramos que no haya margen extra */
+    
+    /* EFECTO DE AGRANDAR SUAVE */
+    transition: transform 0.3s ease-in-out; /* Transición para el efecto de zoom */
+}
+
+/* EFECTO HOVER: Cuando el mouse está sobre el contenedor del logo */
+.logo-container:hover img {
+    transform: scale(1.1); /* Agranda la imagen un 10% */
+}
+
+/* Opcional: Si quieres que el fondo blanco cambie un poco al hover */
+.logo-container:hover::before {
+    background-color: #f0f0f0; /* Un blanco un poco más oscuro al pasar el mouse */
+    box-shadow: 0px 0px 30px rgba(255, 255, 255, 1); /* Sombra más intensa al pasar el mouse */
+}
+
+/* IMPORTANTE: Ajustar el padding-left del container-fluid para dejar espacio */
+.navbar .container-fluid {
+    /* ... otros estilos ... */
+    padding-left: 190px; /* Ajusta este valor. Debe ser mayor que el width del logo-container */
+}
+
+/* Ajusta el padding-top del body según la altura de tu navbar */
+body {
+    padding-top: 60px; /* Si tu navbar mide 60px */
+}
+
+/* ... el resto de tu CSS anterior ... */
+.navbar-nav {
     display: flex;
+    align-items: center; /* Centra los elementos de la lista verticalmente */
+    height: 100%; /* Ocupa la altura disponible */
 }
-.navbar-brand{
-    font-size: 40px;
+
+.nav-item {
+    display: flex; /* Asegura que cada item pueda centrarse si es necesario */
+    align-items: center;
+    font-size: 25px;
+}
+.nav-item :hover{
+    color: chocolate;
+    font-weight: bold;
+}
+
+.nav-link {
+    color: black;
+    padding-top: 0; /* Elimina padding superior/inferior si los tiene por defecto para mejor centrado */
+    padding-bottom: 0;
+    height: 100%; /* Ocupa la altura del nav-item */
+    display: flex;
+    align-items: center; /* Centra el texto del enlace */
+}
+
+/* Asegurarse que el toggler también esté centrado verticalmente */
+.navbar-toggler {
+    margin-left: auto; /* Empuja el toggler a la derecha cuando el menú está colapsado */
+    height: 100%; /* Ocupa la altura de la navbar */
+    display: flex;
+    align-items: center; /* Centra el icono verticalmente */
+}
+
+.navbar-toggler-icon {
+    /* Esto ayuda a que el ícono de las 3 líneas sea visible (color oscuro) */
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(0, 0, 0, 0.5)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+
+/* En pantallas grandes (md o lg), queremos que el colapsador esté a la derecha */
+@media (min-width: 992px) { /* Ajusta 992px si tu navbar-expand-X es diferente */
+    .navbar-toggler {
+        display: none; /* Oculta el toggler en pantallas grandes */
+    }
+    .navbar-collapse {
+        flex-grow: 1; /* Permite que el collapse ocupe el espacio restante */
+        justify-content: flex-end; /* Alinea los enlaces a la derecha */
+    }
+}
+
+
+/* Si el contenido de tu página está por debajo del header, 
+   necesitarás ajustar el margen superior para evitar que el header lo tape. */
+body {
+    padding-top: 60px; /* La altura de tu navbar */
+    background-color: black;
+}
+
+
+@media (max-width: 991.98px) {
+    /* 1. Fondo blanco para el menú colapsado */
+    #navbarNav {
+        background-color: white; 
+        width: 100%; 
+        padding: 10px 0;
+        /* IMPORTANTE: Asegura que el contenido esté alineado a la derecha */
+        text-align: right; 
+    }
+
+    /* 2. Configuración de la lista (contenedor de enlaces) */
+    .navbar-nav {
+        width: 100%;
+        display: block; 
+        padding-left: 0;
+        /* ELIMINAMOS text-align de aquí y lo ponemos en #navbarNav */
+    }
+    
+    /* 3. Ítems de la lista (Nav-Item) */
+    .nav-item {
+        /* Para lista vertical: Mantiene 'display: block' */
+        display: block; 
+        /* ELIMINAMOS width: 100% para que el padding y alineación de #navbarNav funcione */
+        
+        padding-right: 20px; /* Espacio desde el borde derecho */
+    }
+
+    /* 4. Estilos de los enlaces */
+    .nav-link {
+        color: black; 
+        padding: 8px 0;  
+        font-size: 1.1em; 
+        /* Es crucial que el enlace se comporte como inline para que text-align: right en #navbarNav funcione */
+        display: inline-block;
+    }
+    .nav-link:hover{
+        font-weight: bold;
+    }
 }
