@@ -7,7 +7,7 @@
     "build": "ng build",
     "test": "ng test",
     "e2e": "ng e2e",
-    "deploy": "ng build --base-href \"https://miguelrusa1984.github.io/sac/\" && npx angular-cli-ghpages --dir=dist/colegio"
+    "deploy": "ng build --base-href \"https://miguelrusa1984.github.io/colegio/\" && npx angular-cli-ghpages --dir=dist/colegio"
   },
   "prettier": {
     "printWidth": 100,
