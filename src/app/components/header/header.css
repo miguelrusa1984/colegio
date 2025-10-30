@@ -1,0 +1,23 @@
+.navbar {
+    background-color:whitesmoke;
+    position: fixed;
+    top: 0%;
+    left: 0%;
+    width: 100%;
+    z-index: 10000;
+    height: 80px;
+}
+.navbar-brand{
+    color: black;
+}
+.nav-link{
+    color: black;
+}
+.container-fluid img{
+    width: 100px;
+    height: 100px;
+    display: flex;
+}
+.navbar-brand{
+    font-size: 40px;
+}
