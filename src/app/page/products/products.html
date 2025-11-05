@@ -1,20 +1,18 @@
-<div class="video-full-width">
+<body>
 
-  <img src="/img/Fondo1.jpg" alt="Imagen de Fondo" id="myImage" class="background-image">
-</div>
+  <div class="col">
+    <div class="productos">
+      @for (producto of productos; track producto.id) {
+      <article class="producto">
+        <img [src]="producto.imagen" [alt]="'Imagen de ' + producto.nombre">
+        <h3>{{ producto.nombre }}</h3>
+        <p>{{ producto.descripcion }}</p>
+        <strong>{{ producto.precio | currency:'COP ':'symbol':'1.0-0' }}</strong>
+      </article>
+      }
 
-<div class="col">
-  <div class="productos">
-    @for (producto of productos; track producto.id) {
-    <article class="producto">
-      <img [src]="producto.imagen" [alt]="'Imagen de ' + producto.nombre">
-      <h3>{{ producto.nombre }}</h3>
-      <p>{{ producto.descripcion }}</p>
-      <strong>{{ producto.precio | currency:'COP ':'symbol':'1.0-0' }}</strong>
-    </article>
-    }
-    
-  </div>
-  <a href="https://wa.me/573132693492?text=Me%20interesa%20el%20Acompañamiento%20de%20Matemáticas" target="_blank"
+    </div>
+    <a href="https://wa.me/573132693492?text=Me%20interesa%20el%20Acompañamiento%20de%20Matemáticas" target="_blank"
       class="btn-cotizar">💬 Cotizar por WhatsApp</a>
-</div>
+  </div>
+</body>
