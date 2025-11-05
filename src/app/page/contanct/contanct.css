@@ -93,3 +93,35 @@ app-navbar {
 .app-footer .blockquote-footer {
   color: bisque;
 }
+/* ==================================== */
+/* 🧩 MEDIA QUERY para dispositivos móviles */
+/* ==================================== */
+@media (max-width: 768px) {
+    /* 1. Ajuste General del Contenido de las Tarjetas */
+    .card-body p, 
+    .card-body small {
+        font-size: 1.1rem !important; /* Aumenta el tamaño del párrafo y texto secundario */
+    }
+
+    /* 2. Ajuste de los Títulos de las Tarjetas */
+    .card-body h5 {
+        font-size: 1.5rem !important; /* Asegura que el nombre del docente sea grande */
+    }
+
+    /* 3. Ajuste de los encabezados de Misión, Visión y Objetivos */
+    .container h2 {
+        font-size: 1.8rem !important; /* Haz que los títulos H2 sean bien visibles */
+    }
+
+    /* 4. Ajuste del texto de Misión, Visión y Objetivos */
+    .container .row {
+        font-size: 1.1rem; /* Aumenta el texto dentro del contenedor de misión/visión */
+        text-align: left; /* Generalmente la lectura es mejor con el texto justificado o alineado a la izquierda en el móvil */
+    }
+    
+    /* Nota: Si el texto de misión/visión/objetivos se ve muy estrecho,
+       podrías necesitar anular el padding del .col-md-12 */
+    .col-md-12 {
+        padding: 10px;
+    }
+}
