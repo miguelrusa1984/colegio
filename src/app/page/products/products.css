@@ -14,7 +14,9 @@ body {
     max-width: 120%;
     padding-top: 150px;
 }
-
+.espacio{
+    padding: 15px;
+}
 
 .productos {
     display: flex;
@@ -83,7 +85,7 @@ transition: transform 0.2s, box-shadow 0.2s;
     font-weight: bold;
     transition: background-color 0.3s;
     text-align: center;
-    width: 50%;
+    width: 90%;
 }
 
 .btn-cotizar:hover {

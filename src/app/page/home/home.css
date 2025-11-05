@@ -64,7 +64,7 @@ body h3 {
   /* Aquí es donde debe estar la solución */
   background-color: transparent !important;
   /* El !important ayuda a forzar si hay conflictos */
-  padding: 0;
+  padding: 20px;
   padding-top: 10px;
   width: 100%;
 }
