@@ -1,5 +1,5 @@
 body {
-  background: url('/assets/img/Salon2.jpg') no-repeat center center fixed;
+  background: url('/img/Salon2.jpg') no-repeat center center fixed;
   background-size: cover;
   min-height: 100vh;
 }
