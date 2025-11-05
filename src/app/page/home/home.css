@@ -7,6 +7,7 @@ body h1 {
   padding-top: 10px;
   color: white;
   text-align: center;
+  width: 100%;
 }
 body h2 {
   padding: 10px;
@@ -14,6 +15,7 @@ body h2 {
   text-align: center;
   padding-top: 30px;
   font-size: 40px;
+  width: 100%;
 }
 body h3 {
   padding: 10px;
@@ -21,6 +23,7 @@ body h3 {
   text-align: center;
   padding-top: 30px;
   font-size: 40px;
+  width: 100%;
 }
 
 .imgcontenido{
@@ -63,6 +66,10 @@ body h3 {
   /* El !important ayuda a forzar si hay conflictos */
   padding: 0;
   padding-top: 10px;
+  width: 100%;
+}
+.formulario-contacto{
+  width: 100%;
 }
 .form-container {
   display: flex;
@@ -74,14 +81,13 @@ body h3 {
   /* Fondo negro transparente */
   color: white;
   border-radius: 10px;
-  width: 90%;
-  max-width: 80%;
+  width: auto;
   /* Ajustar el margin-top para que no choque con el menú superior */
   margin: auto;
   margin-top: 20px;
 }
 .form-container .mb-3 {
-  width: 70%;
+  width: 100%;
   z-index: 100;
 }.form-container label {
   text-align: left;
