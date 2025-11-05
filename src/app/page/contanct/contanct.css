@@ -2,20 +2,103 @@ body {
   background: url('../../../assets/img/Fondo3.jpg') no-repeat center center fixed;
   background-size: cover;
   min-height: 100vh;
+  position: relative;
+  z-index: -2;
 }
+
+body::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.3);
+  z-index: -1;
+}
+
 .app-wrapper {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
   position: relative;
   overflow: hidden;
-  margin-top: 25px;
+  margin-top: 5px;
 }
-.app-wrapper img{
+
+.app-wrapper img {
   width: 100%;
   height: 100%;
 }
 
+.container {
+  /* Aquí es donde debe estar la solución */
+  background-color: transparent !important;
+  /* El !important ayuda a forzar si hay conflictos */
+  padding: 5px;
+  padding-top: 80px;
+  width: 100%;
+}
+
+.formulario-contacto {
+  width: 100%;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.6);
+  /* Fondo negro transparente */
+  color: white;
+  border-radius: 10px;
+  width: auto;
+  /* Ajustar el margin-top para que no choque con el menú superior */
+  margin: auto;
+  margin-top: 5px;
+}
+
+.form-container .mb-3 {
+  width: 100%;
+  z-index: 100;
+}
+
+.form-container label {
+  text-align: left;
+  width: 100%;
+}
+
+.form-container input {
+  width: 70%;
+  background-color: white;
+}
+
+.form-container textarea {
+  width: 100%;
+  background-color: white;
+}
+
+
+.btn-enviar {
+  display: block;
+  width: 90%;
+  padding: 15px;
+  margin-top: 20px;
+  background-color: #140264;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-enviar:hover {
+  background-color: #045a08;
+}
 
 .background-video {
   position: absolute;
@@ -35,35 +118,35 @@ body {
   align-items: center;
   z-index: 1;
   padding: 5px;
-  background-color: transparent; 
+  background-color: transparent;
   color: #333;
-  padding-top: 80px;
 }
 
 
 .main-content .card {
   background-color: rgba(255, 255, 255, 0.7);
   border: none;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.main-content h2, .main-content h4 {
-    color: #000;
-    font-weight: bold;
+.main-content h2,
+.main-content h4 {
+  color: #000;
+  font-weight: bold;
 }
 
 .main-content p {
-    color: #333;
-    line-height: 1.6;
+  color: #333;
+  line-height: 1.6;
 }
 
 .main-content a {
-    color: #007bff;
-    text-decoration: none;
+  color: #007bff;
+  text-decoration: none;
 }
 
 .main-content a:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 
 
@@ -93,35 +176,42 @@ app-navbar {
 .app-footer .blockquote-footer {
   color: bisque;
 }
+
 /* ==================================== */
 /* 🧩 MEDIA QUERY para dispositivos móviles */
 /* ==================================== */
 @media (max-width: 768px) {
-    /* 1. Ajuste General del Contenido de las Tarjetas */
-    .card-body p, 
-    .card-body small {
-        font-size: 1.1rem !important; /* Aumenta el tamaño del párrafo y texto secundario */
-    }
 
-    /* 2. Ajuste de los Títulos de las Tarjetas */
-    .card-body h5 {
-        font-size: 1.5rem !important; /* Asegura que el nombre del docente sea grande */
-    }
+  /* 1. Ajuste General del Contenido de las Tarjetas */
+  .card-body p,
+  .card-body small {
+    font-size: 1.1rem !important;
+    /* Aumenta el tamaño del párrafo y texto secundario */
+  }
 
-    /* 3. Ajuste de los encabezados de Misión, Visión y Objetivos */
-    .container h2 {
-        font-size: 1.8rem !important; /* Haz que los títulos H2 sean bien visibles */
-    }
+  /* 2. Ajuste de los Títulos de las Tarjetas */
+  .card-body h5 {
+    font-size: 1.5rem !important;
+    /* Asegura que el nombre del docente sea grande */
+  }
 
-    /* 4. Ajuste del texto de Misión, Visión y Objetivos */
-    .container .row {
-        font-size: 1.1rem; /* Aumenta el texto dentro del contenedor de misión/visión */
-        text-align: left; /* Generalmente la lectura es mejor con el texto justificado o alineado a la izquierda en el móvil */
-    }
-    
-    /* Nota: Si el texto de misión/visión/objetivos se ve muy estrecho,
+  /* 3. Ajuste de los encabezados de Misión, Visión y Objetivos */
+  .container h2 {
+    font-size: 1.8rem !important;
+    /* Haz que los títulos H2 sean bien visibles */
+  }
+
+  /* 4. Ajuste del texto de Misión, Visión y Objetivos */
+  .container .row {
+    font-size: 1.1rem;
+    /* Aumenta el texto dentro del contenedor de misión/visión */
+    text-align: left;
+    /* Generalmente la lectura es mejor con el texto justificado o alineado a la izquierda en el móvil */
+  }
+
+  /* Nota: Si el texto de misión/visión/objetivos se ve muy estrecho,
        podrías necesitar anular el padding del .col-md-12 */
-    .col-md-12 {
-        padding: 10px;
-    }
+  .col-md-12 {
+    padding: 10px;
+  }
 }
