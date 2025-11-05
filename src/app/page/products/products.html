@@ -1,42 +1,19 @@
-<div class="video-full-width" autoplay loop muted>
+<div class="video-full-width">
 
-  <img src="img/Fondo1.jpg" alt="Imagen de Fondo" id="myImage" class="background-image">
+  <img src="/img/Fondo1.jpg" alt="Imagen de Fondo" id="myImage" class="background-image">
 </div>
 
-<div class="container text-center productos-sobre-video">  <div class="row">
-    <div class="col">
+<div class="col">
       <div class="producto-item">
-        <img src="img/Asesoria1.jpg" class="d-block" alt="Salón 1">
-        <p>Acompañamiento</p>
+        @for (producto of productos; track producto.id) {
+        <article class="producto">
+          <img [src]="producto.imagen" [alt]="'Imagen de ' + producto.nombre">
+          <h3>{{ producto.nombre }}</h3>
+          <p>{{ producto.descripcion }}</p>
+          <strong>{{ producto.precio | currency:'COP ':'symbol':'1.0-0' }}</strong>
+        </article>
+        }
         <a href="https://wa.me/573132693492?text=Me%20interesa%20el%20Acompañamiento%20de%20Matemáticas" target="_blank"
           class="btn-cotizar">Cotizar</a>
       </div>
     </div>
-    <div class="col">
-      <div class="producto-item">
-        <img src="img/Asesoria2.jpg" class="d-block" alt="Salón 1">
-        <p>Asesoria de tareas</p>
-        <a href="https://wa.me/573132693492?text=Me%20interesa%20la%20Asesoria%20de%20tareas" target="_blank"
-          class="btn-cotizar">Cotizar</a>
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col">
-      <div class="producto-item">
-        <img src="img/Asesoria3.jpeg" class="d-block" alt="Salón 1">
-        <p>Ejercicios de Memorización</p>
-        <a href="https://wa.me/573132693492?text=Me%20interesan%20los%20Ejercicios%20de%20Memorización" target="_blank"
-          class="btn-cotizar">Cotizar</a>
-      </div>
-    </div>
-    <div class="col">
-      <div class="producto-item">
-        <img src="img/Asesoria5.jpg" class="d-block " alt="Salón 1">
-        <p>Apoyo Educativo</p>
-        <a href="https://wa.me/573132693492?text=Me%20interesa%20el%20Apoyo%20Educativo" target="_blank"
-          class="btn-cotizar">Cotizar</a>
-      </div>
-    </div>
-  </div>
-</div>
