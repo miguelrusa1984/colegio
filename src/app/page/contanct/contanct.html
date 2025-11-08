@@ -1,5 +1,30 @@
 <body>
-  <div class="container">
+
+  <main class="main-content mt-5">
+    <div class="container mt-5">
+      <h2 class="text-center mb-4">DATOS DE CONTACTO<br>Clases y Asesorias</h2>
+      <div class="card p-4 mx-auto" style="max-width: 600px;">
+        <div class="card-body">
+          <p><strong>Nombre completo:</strong> Sociedad Académica</p>
+          <p><strong>Profesión o especialidad:</strong> Aritmética, Álgebra y Geometría</p>
+          <p><strong>Teléfono / WhatsApp:</strong> +57 310 123 4567</p>
+          <p><strong>Correo electrónico:</strong> contacto@sociedadacademica.com</p>
+          <p><strong>Ciudad / Ubicación:</strong> Madrid (Cundinamarca), Colombia</p>
+          <p><strong>Disponibilidad:</strong> Lunes a viernes, de 8:00 a.m. a 5:00 p.m.</p>
+          <p><strong>Modalidad de clases:</strong> Presenciales y virtuales (Zoom / Google Meet)</p>
+          <p><strong>Nivel de atención:</strong> Bachillerato y Nivelación Universitaria</p>
+
+          <h4 class="mt-4">Redes sociales:</h4>
+          <p><strong>Instagram: </strong> <a href=" https://instagram.com/sociedad.academica"
+              target="_blank">@sociedad.academica</a></p>
+          <p><strong>Facebook: </strong> <a href=" https://facebook.com/sociedad.academica"
+              target="_blank">facebook.com/sociedad.academica</a></p>
+          <p class="text-muted"><small>— Sitio web o portafolio educativo www.sociedadacademica.edu.co</small></p>
+        </div>
+      </div>
+    </div>
+  </main>
+    <div class="container py-5">
     <form id="formulario-contacto">
 
       <div class="form-container">
@@ -30,28 +55,84 @@
       </div>
     </form>
   </div>
-  <main class="main-content">
-    <div class="container my-5">
-      <h2 class="text-center mb-4">DATOS DE CONTACTO<br>Clases y Asesorias</h2>
-      <div class="card p-4 mx-auto" style="max-width: 600px;">
-        <div class="card-body">
-          <p><strong>Nombre completo:</strong> Sociedad Académica</p>
-          <p><strong>Profesión o especialidad:</strong> Aritmética, Álgebra y Geometría</p>
-          <p><strong>Teléfono / WhatsApp:</strong> +57 310 123 4567</p>
-          <p><strong>Correo electrónico:</strong> contacto@sociedadacademica.com</p>
-          <p><strong>Ciudad / Ubicación:</strong> Madrid (Cundinamarca), Colombia</p>
-          <p><strong>Disponibilidad:</strong> Lunes a viernes, de 8:00 a.m. a 5:00 p.m.</p>
-          <p><strong>Modalidad de clases:</strong> Presenciales y virtuales (Zoom / Google Meet)</p>
-          <p><strong>Nivel de atención:</strong> Bachillerato y Nivelación Universitaria</p>
 
-          <h4 class="mt-4">Redes sociales:</h4>
-          <p><strong>Instagram: </strong> <a href=" https://instagram.com/sociedad.academica"
-              target="_blank">@sociedad.academica</a></p>
-          <p><strong>Facebook: </strong> <a href=" https://facebook.com/sociedad.academica"
-              target="_blank">facebook.com/sociedad.academica</a></p>
-          <p class="text-muted"><small>— Sitio web o portafolio educativo www.sociedadacademica.edu.co</small></p>
-        </div>
-      </div>
-    </div>
-  </main>
+  <script>
+    // URL del Web App de Apps Script: pega **solo una** URL que termine en /exec.
+    const GAS_WEBAPP_URL = 'https://script.google.com/macros/s/AKfycbxvpzP_6TYXkt7KdgbGx8wqsyJtQ_WIwoUM7gd0gbPmvLEoIWdOZw_e6MWBY87oXjpH/exec';
+
+    // Token secreto que debe coincidir exactamente con SECRET_TOKEN en tu Apps Script.
+    const FRONTEND_TOKEN = 'MI_TOKEN_SUPER_SECRETO_2025';
+
+    // Referencia al formulario por su id.
+    const form = document.getElementById('formulario-contacto');
+
+    // Referencia al div que muestra el mensaje de éxito.
+    const mensajeExito = document.getElementById('mensaje-exito');
+
+    // Escuchamos el evento submit del formulario para manejar el envío con fetch.
+    form.addEventListener('submit', async function (event) {
+
+      // Evitamos que el formulario recargue la página por defecto.
+      event.preventDefault();
+
+      // Obtenemos y limpiamos los valores de cada campo.
+      const nombre = document.getElementById('nombre').value.trim();
+      const correo = document.getElementById('correo').value.trim();
+      const telefono = document.getElementById('telefono').value.trim();
+      const descripcion = document.getElementById('descripcion').value.trim();
+
+      // Validación básica: todos los campos requeridos.
+      if (!nombre || !correo || !telefono || !descripcion) {
+        alert('Por favor, complete todos los campos.');
+        return;
+      }
+
+      // Construimos el objeto que enviaremos al Apps Script.
+      const payload = {
+        nombre: nombre,
+        correo: correo,
+        telefono: telefono,
+        descripcion: descripcion,
+        ip: '',            // Opcional: puedes obtenerla con api.ipify.org si quieres.
+        token: FRONTEND_TOKEN
+      };
+
+      try {
+        // Enviamos la petición POST con el payload en formato JSON.
+        const respuesta = await fetch(GAS_WEBAPP_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+
+        // Leemos el texto de la respuesta (útil para depurar).
+        const textoRespuesta = await respuesta.text();
+        // Intentamos parsearlo a JSON (seguro si el Apps Script responde JSON).
+        let resultado;
+        try {
+          resultado = JSON.parse(textoRespuesta);
+        } catch (err) {
+          resultado = null;
+        }
+
+        // Mostramos en consola la respuesta completa para depuración.
+        console.log('HTTP status:', respuesta.status, 'response text:', textoRespuesta);
+
+        // Si Apps Script respondió éxito, mostramos notificación y reseteamos el formulario.
+        if (resultado && resultado.success) {
+          mensajeExito.classList.add('mostrar');
+          form.reset();
+          setTimeout(() => mensajeExito.classList.remove('mostrar'), 5000);
+        } else {
+          // Si hubo problema, mostramos mensaje al usuario y al desarrollador (console).
+          alert('No fue posible registrar el mensaje. Revisa la consola para más detalles.');
+          console.error('Respuesta inesperada del Web App:', resultado, textoRespuesta);
+        }
+      } catch (error) {
+        // Manejo de errores de red o ejecución (p. ej. URL mal formada).
+        console.error('Error al enviar datos (fetch):', error);
+        alert('Ocurrió un error al enviar el formulario. Revisa la consola del navegador.');
+      }
+    });
+  </script>
 </body>

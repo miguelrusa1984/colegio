@@ -52,7 +52,7 @@ body h3 {
 }
 .img-thumbnail{
   transform-origin: center center;
-  transition: transform 0.3s ease-in-out, filter 0.3 ease-in-out;
+  transition: transform 0.3s ease-in-out, filter 0.3s ease-in-out; /* ¡Agrega la 's' a 0.3s! */
   filter: brightness(100%);
   will-change: transform, filter;
   width: 90%;

@@ -4,6 +4,7 @@
   "newProjectRoot": "projects",
   "projects": {
     "colegio": {
+      
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -35,6 +36,7 @@
             ]
             
           },
+          
           "configurations": {
             "production": {
               "budgets": [
