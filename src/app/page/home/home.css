@@ -1,3 +1,4 @@
+
 body {
   background: url('../../../assets/img/Fondo3.jpg') no-repeat center center fixed;
   background-size: cover;
@@ -52,7 +53,8 @@ body h3 {
 }
 .img-thumbnail{
   transform-origin: center center;
-  transition: transform 0.3s ease-in-out, filter 0.3s ease-in-out; /* ¡Agrega la 's' a 0.3s! */
+  /* ¡Importante! Quitamos 'transform 0.3s ease-in-out' */
+  transition: filter 0.3s ease-in-out, box-shadow 0.3s ease-in-out; 
   filter: brightness(100%);
   will-change: transform, filter;
   width: 90%;
@@ -60,16 +62,24 @@ body h3 {
   display: block;
 }
 .img-thumbnail:hover{
+  /* ¡Importante! Quitamos 'transform: scale(1.05);' */
   animation: latido 0.5s infinite alternate;
-  transform: scale(1.05);
   filter: brightness(120%) saturate(1.1);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
   cursor: pointer;
 }
 @keyframes latido {
-  0% { transform: scale(1.05); }
-  50% { transform: scale(1.08); } /* Ligeramente más grande en el punto medio */
+  /* El estado base de 'hover' y el punto de inicio de la animación */
+  0% { transform: scale(1.05); } 
+  /* El punto más grande del latido */
+  50% { transform: scale(1.1); } 
+  /* Regresa al estado base */
   100% { transform: scale(1.05); }
+}
+
+.imgcontenido .row .col-12 .img-thumbnail:hover {
+  animation: latido 0.5s infinite alternate !important; 
+  /* Solo si es absolutamente necesario */
 }
 
 .container {
@@ -80,38 +90,7 @@ body h3 {
   padding-top: 10px;
   width: 100%;
 }
-.formulario-contacto{
-  width: 100%;
-}
-.form-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-  background: rgba(0, 0, 0, 0.6);
-  /* Fondo negro transparente */
-  color: white;
-  border-radius: 10px;
-  width: auto;
-  /* Ajustar el margin-top para que no choque con el menú superior */
-  margin: auto;
-  margin-top: 20px;
-}
-.form-container .mb-3 {
-  width: 100%;
-  z-index: 100;
-}.form-container label {
-  text-align: left;
-  width: 100%;
-}.form-container input {
-  width: 70%;
-  background-color: white;
-}
-.form-container textarea{
-  width: 100%;
-  background-color: white;
-}
+
 
 .accordion {
   padding: 15px;
@@ -142,43 +121,3 @@ body h3 {
   transform: rotate(-180deg);
 }
 
-.btn-enviar {
-  display: block;
-  width: 90%;
-  padding: 15px;
-  margin-top: 20px;
-  background-color: #140264;
-  color: white;
-  font-size: 18px;
-  font-weight: bold;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-.btn-enviar:hover {
-  background-color: #045a08;
-}
-
-.alerta-exito {
-  display: none;
-  text-align: center;
-  padding: 15px;
-  position: fixed;
-  top: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 1000;
-  width: 90%;
-  max-width: 400px;
-  background-color: transparent;
-  color: #155724;
-  border: 1px solid #c3e6cb;
-  border-radius: .25rem;
-  font-size: 1.2rem;
-  font-weight: bold;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-.alerta-exito.mostrar {
-  display: block;
-}
