@@ -24,115 +24,52 @@
       </div>
     </div>
   </main>
-    <div class="container py-5">
+<div class="container py-5">
     <form id="formulario-contacto">
+        <div class="form-container">
+            <h1>ESCRIBENOS Y NOS COMUNICAREMOS CONTIGO</h1>
+            
+            <div class="mb-3">
+                <label for="nombre" class="form-label">Nombre y Apellidos</label>
+                <input type="text" class="form-control" id="nombre" placeholder="Pedro Antonio Perez Buitrago" required>
+                <span id="error-nombre" class="invalid-feedback"></span>
+            </div>
 
-      <div class="form-container">
-        <h1>ESCRIBENOS Y NOS COMUNICAREMOS CONTIGO</h1>
-        <div class="mb-3">
-          <label for="nombre" class="form-label">Nombre y Apellidos</label>
-          <input type="text" class="form-control" id="nombre" placeholder="Pedro Antonio Perez Buitrago" required>
+            <div class="mb-3">
+                <label for="correo" class="form-label">Correo Electronico</label>
+                <input type="email" class="form-control" id="correo" placeholder="name@example.com" required>
+                <span id="error-correo" class="invalid-feedback"></span>
+            </div>
+
+            <div class="mb-3">
+                <label for="telefono" class="form-label">Número de Contacto</label>
+                <input type="tel" class="form-control" id="telefono" placeholder="310 123 45 67" required>
+                <span id="error-telefono" class="invalid-feedback"></span>
+            </div>
+
+            <div class="mb-3">
+                <label for="descripcion" class="form-label">Descripción de la solicitud</label>
+                <textarea class="form-control" id="descripcion" rows="3" required></textarea>
+                <span id="error-descripcion" class="invalid-feedback"></span>
+            </div>
+
+            <button type="submit" class="btn-enviar" id="btn-enviar">
+                Enviar Solicitud
+            </button>
+            <button type="button" class="btn-cancelar" id="btn-cancelar">
+                Cancelar
+            </button>
         </div>
-
-        <div class="mb-3">
-          <label for="correo" class="form-label">Correo Electronico</label>
-          <input type="email" class="form-control" id="correo" placeholder="name@example.com" required>
-        </div>
-
-        <div class="mb-3">
-          <label for="telefono" class="form-label">Número de Contacto</label>
-          <input type="tel" class="form-control" id="telefono" placeholder="310 123 45 67" required>
-        </div>
-
-        <div class="mb-3">
-          <label for="descripcion" class="form-label">Descripción de la solicitud</label>
-          <textarea class="form-control" id="descripcion" rows="3" required></textarea>
-        </div>
-
-        <button type="submit" class="btn-enviar" id="btn-enviar">
-          Enviar Solicitud
-        </button>
-      </div>
     </form>
-  </div>
+</div>
 
-  <script>
-    // URL del Web App de Apps Script: pega **solo una** URL que termine en /exec.
-    const GAS_WEBAPP_URL = 'https://script.google.com/macros/s/AKfycbxvpzP_6TYXkt7KdgbGx8wqsyJtQ_WIwoUM7gd0gbPmvLEoIWdOZw_e6MWBY87oXjpH/exec';
-
-    // Token secreto que debe coincidir exactamente con SECRET_TOKEN en tu Apps Script.
-    const FRONTEND_TOKEN = 'MI_TOKEN_SUPER_SECRETO_2025';
-
-    // Referencia al formulario por su id.
-    const form = document.getElementById('formulario-contacto');
-
-    // Referencia al div que muestra el mensaje de éxito.
-    const mensajeExito = document.getElementById('mensaje-exito');
-
-    // Escuchamos el evento submit del formulario para manejar el envío con fetch.
-    form.addEventListener('submit', async function (event) {
-
-      // Evitamos que el formulario recargue la página por defecto.
-      event.preventDefault();
-
-      // Obtenemos y limpiamos los valores de cada campo.
-      const nombre = document.getElementById('nombre').value.trim();
-      const correo = document.getElementById('correo').value.trim();
-      const telefono = document.getElementById('telefono').value.trim();
-      const descripcion = document.getElementById('descripcion').value.trim();
-
-      // Validación básica: todos los campos requeridos.
-      if (!nombre || !correo || !telefono || !descripcion) {
-        alert('Por favor, complete todos los campos.');
-        return;
-      }
-
-      // Construimos el objeto que enviaremos al Apps Script.
-      const payload = {
-        nombre: nombre,
-        correo: correo,
-        telefono: telefono,
-        descripcion: descripcion,
-        ip: '',            // Opcional: puedes obtenerla con api.ipify.org si quieres.
-        token: FRONTEND_TOKEN
-      };
-
-      try {
-        // Enviamos la petición POST con el payload en formato JSON.
-        const respuesta = await fetch(GAS_WEBAPP_URL, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload)
-        });
-
-        // Leemos el texto de la respuesta (útil para depurar).
-        const textoRespuesta = await respuesta.text();
-        // Intentamos parsearlo a JSON (seguro si el Apps Script responde JSON).
-        let resultado;
-        try {
-          resultado = JSON.parse(textoRespuesta);
-        } catch (err) {
-          resultado = null;
-        }
-
-        // Mostramos en consola la respuesta completa para depuración.
-        console.log('HTTP status:', respuesta.status, 'response text:', textoRespuesta);
-
-        // Si Apps Script respondió éxito, mostramos notificación y reseteamos el formulario.
-        if (resultado && resultado.success) {
-          mensajeExito.classList.add('mostrar');
-          form.reset();
-          setTimeout(() => mensajeExito.classList.remove('mostrar'), 5000);
-        } else {
-          // Si hubo problema, mostramos mensaje al usuario y al desarrollador (console).
-          alert('No fue posible registrar el mensaje. Revisa la consola para más detalles.');
-          console.error('Respuesta inesperada del Web App:', resultado, textoRespuesta);
-        }
-      } catch (error) {
-        // Manejo de errores de red o ejecución (p. ej. URL mal formada).
-        console.error('Error al enviar datos (fetch):', error);
-        alert('Ocurrió un error al enviar el formulario. Revisa la consola del navegador.');
-      }
-    });
-  </script>
+<style>
+.invalid-feedback {
+    color: red;
+    font-size: 0.875em;
+    display: block; /* Asegura que el error ocupe espacio */
+    margin-top: 0.25rem;
+    min-height: 1.25rem; /* Reserva espacio para evitar saltos */
+}
+</style>
 </body>

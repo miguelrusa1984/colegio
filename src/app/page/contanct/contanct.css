@@ -100,6 +100,26 @@ body::before {
   background-color: #045a08;
 }
 
+.btn-cancelar {
+  display: block;
+  width: 90%;
+  padding: 15px;
+  margin-top: 20px;
+  background-color: #640202;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-cancelar:hover {
+  background-color: #b87905;
+}
+
+
 .background-video {
   position: absolute;
   top: 0;
