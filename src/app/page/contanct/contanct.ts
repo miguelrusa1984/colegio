@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
@@ -16,10 +15,10 @@ export class Contanct {
 
     constructor(private fb: FormBuilder) {
         this.contactForm = this.fb.group({
-            nombre: ['', Validators.required],
+            nombre: ['',[Validators.required, Validators.minLength(2)]],
             correo: ['', [Validators.required, Validators.email]],
             contacto: ['', Validators.required],
-            descripcion: ['', Validators.required]
+            descripcion: ['', Validators.required, Validators.minLength(10)]
         });
     }
 
@@ -32,7 +31,7 @@ export class Contanct {
             const url = window.URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = url;
-            a.download = 'contact_data.json';
+            a.download = 'contacto.json';
             a.click();
             window.URL.revokeObjectURL(url);
             this.contactForm.reset();

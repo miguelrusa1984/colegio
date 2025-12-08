@@ -1,82 +1,90 @@
 <body>
 
-  <main class="main-content mt-5">
-    <div class="container mt-5">
-      <h2 class="text-center mb-4">DATOS DE CONTACTO<br>Clases y Asesorias</h2>
-      <div class="card p-4 mx-auto" style="max-width: 600px;">
-        <div class="card-body">
-          <p><strong>Nombre completo:</strong> Sociedad Académica</p>
-          <p><strong>Profesión o especialidad:</strong> Aritmética, Álgebra y Geometría</p>
-          <p><strong>Teléfono / WhatsApp:</strong> +57 310 123 4567</p>
-          <p><strong>Correo electrónico:</strong> contacto@sociedadacademica.com</p>
-          <p><strong>Ciudad / Ubicación:</strong> Madrid (Cundinamarca), Colombia</p>
-          <p><strong>Disponibilidad:</strong> Lunes a viernes, de 8:00 a.m. a 5:00 p.m.</p>
-          <p><strong>Modalidad de clases:</strong> Presenciales y virtuales (Zoom / Google Meet)</p>
-          <p><strong>Nivel de atención:</strong> Bachillerato y Nivelación Universitaria</p>
+    <main class="main-content mt-5">
+        <div class="container mt-5">
+            <h2 class="text-center mb-4">DATOS DE CONTACTO<br>Clases y Asesorias</h2>
+            <div class="card p-4 mx-auto" style="max-width: 600px;">
+                <div class="card-body">
+                    <p><strong>Nombre completo:</strong> Sociedad Académica</p>
+                    <p><strong>Profesión o especialidad:</strong> Aritmética, Álgebra y Geometría</p>
+                    <p><strong>Teléfono / WhatsApp:</strong> +57 310 123 4567</p>
+                    <p><strong>Correo electrónico:</strong> contacto@sociedadacademica.com</p>
+                    <p><strong>Ciudad / Ubicación:</strong> Madrid (Cundinamarca), Colombia</p>
+                    <p><strong>Disponibilidad:</strong> Lunes a viernes, de 8:00 a.m. a 5:00 p.m.</p>
+                    <p><strong>Modalidad de clases:</strong> Presenciales y virtuales (Zoom / Google Meet)</p>
+                    <p><strong>Nivel de atención:</strong> Bachillerato y Nivelación Universitaria</p>
 
-          <h4 class="mt-4">Redes sociales:</h4>
-          <p><strong>Instagram: </strong> <a href=" https://instagram.com/sociedad.academica"
-              target="_blank">@sociedad.academica</a></p>
-          <p><strong>Facebook: </strong> <a href=" https://facebook.com/sociedad.academica"
-              target="_blank">facebook.com/sociedad.academica</a></p>
-          <p class="text-muted"><small>— Sitio web o portafolio educativo www.sociedadacademica.edu.co</small></p>
+                    <h4 class="mt-4">Redes sociales:</h4>
+                    <p><strong>Instagram: </strong> <a href=" https://instagram.com/sociedad.academica"
+                            target="_blank">@sociedad.academica</a></p>
+                    <p><strong>Facebook: </strong> <a href=" https://facebook.com/sociedad.academica"
+                            target="_blank">facebook.com/sociedad.academica</a></p>
+                    <p class="text-muted"><small>— Sitio web o portafolio educativo www.sociedadacademica.edu.co</small>
+                    </p>
+                </div>
+            </div>
         </div>
-      </div>
+    </main>
+    <div class="containerf py-5">
+        <div class="form-container">
+            <h1>ESCRIBENOS Y NOS COMUNICAREMOS CONTIGO</h1>
+
+            <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" style="width: 100%">
+
+                <div class="mb-3">
+                    <label class="form-label">Nombre y Apellidos</label>
+                    <input type="text" class="form-control" formControlName="nombre">
+                    <small class="text-danger"
+                        *ngIf="contactForm.get('nombre')?.touched && contactForm.get('nombre')?.invalid">
+                        El campo nombre es obligatorio y debe tener al menos 3 caracteres.
+                    </small>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Correo Electronico</label>
+                    <input type="text" class="form-control" formControlName="correo">
+                    <small class="text-danger"
+                        *ngIf="contactForm.get('correo')?.touched && contactForm.get('correo')?.invalid">
+                        El campo correo es obligatorio y debe tener al menos 3 caracteres.
+                    </small>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Contacto</label>
+                    <input type="text" class="form-control" formControlName="contacto">
+                    <small class="text-danger"
+                        *ngIf="contactForm.get('contacto')?.touched && contactForm.get('contacto')?.invalid">
+                        El campo contacto es obligatorio y debe tener al menos 3 caracteres.
+                    </small>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Descripción</label>
+                    <input type="text" class="form-control" formControlName="descripcion">
+                    <small class="text-danger"
+                        *ngIf="contactForm.get('descripcion')?.touched && contactForm.get('descripcion')?.invalid">
+                        El campo contacto es obligatorio y debe tener al menos 3 caracteres.
+                    </small>
+                </div>
+
+                <button type="submit" class="btn-enviar" id="btn-enviar" (click)="onSubmit()">
+                    Enviar Solicitud
+                </button>
+                <button type="button" class="btn-cancelar" id="btn-cancelar" (click)="cancelar()">
+                    Cancelar
+                </button>
+            </form>
+        </div>
     </div>
-  </main>
-<div class="containerf py-5">
-    <div class="form-container">
-        <h1>ESCRIBENOS Y NOS COMUNICAREMOS CONTIGO</h1>
-        
-        <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
-
-            <div class="mb-3">
-                <label class="form-label">Nombre y Apellidos</label>
-                <input type="text" class="form-control" formControlName="nombre">
-                <small class="text-danger" *ngIf="contactForm.get('nombre')?.touched && contactForm.get('nombre')?.invalid">
-                    El campo nombre es obligatorio y debe tener al menos 3 caracteres. 
-                </small>
-            </div>
-
-            <div class="mb-3">
-                <label class="form-label">Correo Electronico</label>
-                <input type="text" class="form-control" formControlName="correo">
-                <small class="text-danger" *ngIf="contactForm.get('correo')?.touched && contactForm.get('correo')?.invalid">
-                    El campo correo es obligatorio y debe tener al menos 3 caracteres. 
-                </small>
-            </div>
-
-            <div class="mb-3">
-                <label class="form-label">Contacto</label>
-                <input type="text" class="form-control" formControlName="contacto">
-                <small class="text-danger" *ngIf="contactForm.get('contacto')?.touched && contactForm.get('contacto')?.invalid">
-                    El campo contacto es obligatorio y debe tener al menos 3 caracteres. 
-                </small>
-            </div>
-
-            <div class="mb-3">
-                <label class="form-label">Descripción</label>
-                <input type="text" class="form-control" formControlName="descripcion">
-                <small class="text-danger" *ngIf="contactForm.get('descripcion')?.touched && contactForm.get('descripcion')?.invalid">
-                    El campo contacto es obligatorio y debe tener al menos 3 caracteres. 
-                </small>
-            </div>
-
-            <button type="submit" class="btn-enviar" id="btn-enviar">
-                Enviar Solicitud
-            </button>
-            <button type="button" class="btn-cancelar" id="btn-cancelar">
-                Cancelar
-            </button>
-        </form> </div>
-</div>
-<style>
-.invalid-feedback {
-    color: red;
-    font-size: 0.875em;
-    display: block; /* Asegura que el error ocupe espacio */
-    margin-top: 0.25rem;
-    min-height: 1.25rem; /* Reserva espacio para evitar saltos */
-}
-</style>
+    <style>
+        .invalid-feedback {
+            color: red;
+            font-size: 0.875em;
+            display: block;
+            /* Asegura que el error ocupe espacio */
+            margin-top: 0.25rem;
+            min-height: 1.25rem;
+            /* Reserva espacio para evitar saltos */
+        }
+    </style>
 </body>
