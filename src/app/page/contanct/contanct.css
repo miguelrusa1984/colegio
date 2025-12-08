@@ -40,6 +40,18 @@ body::before {
   width: 100%;
 }
 
+.containerf {
+  /* Aquí es donde debe estar la solución */
+  background-color: transparent !important;
+  /* El !important ayuda a forzar si hay conflictos */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+  padding-top: 0px;
+  width: 100%;
+}
+
 .formulario-contacto {
   width: 100%;
 }
@@ -62,7 +74,7 @@ body::before {
 
 .form-container .mb-3 {
   width: 100%;
-  z-index: 100;
+  z-index: 10000;
 }
 
 .form-container label {
@@ -70,15 +82,11 @@ body::before {
   width: 100%;
 }
 
-.form-container input {
-  width: 70%;
-  background-color: white;
-}
-
-.form-container textarea {
+.form-container .form-control {
   width: 100%;
   background-color: white;
 }
+
 
 
 .btn-enviar {

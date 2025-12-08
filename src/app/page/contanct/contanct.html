@@ -24,33 +24,42 @@
       </div>
     </div>
   </main>
-<div class="container py-5">
-    <form id="formulario-contacto">
-        <div class="form-container">
-            <h1>ESCRIBENOS Y NOS COMUNICAREMOS CONTIGO</h1>
-            
+<div class="containerf py-5">
+    <div class="form-container">
+        <h1>ESCRIBENOS Y NOS COMUNICAREMOS CONTIGO</h1>
+        
+        <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+
             <div class="mb-3">
-                <label for="nombre" class="form-label">Nombre y Apellidos</label>
-                <input type="text" class="form-control" id="nombre" placeholder="Pedro Antonio Perez Buitrago" required>
-                <span id="error-nombre" class="invalid-feedback"></span>
+                <label class="form-label">Nombre y Apellidos</label>
+                <input type="text" class="form-control" formControlName="nombre">
+                <small class="text-danger" *ngIf="contactForm.get('nombre')?.touched && contactForm.get('nombre')?.invalid">
+                    El campo nombre es obligatorio y debe tener al menos 3 caracteres. 
+                </small>
             </div>
 
             <div class="mb-3">
-                <label for="correo" class="form-label">Correo Electronico</label>
-                <input type="email" class="form-control" id="correo" placeholder="name@example.com" required>
-                <span id="error-correo" class="invalid-feedback"></span>
+                <label class="form-label">Correo Electronico</label>
+                <input type="text" class="form-control" formControlName="correo">
+                <small class="text-danger" *ngIf="contactForm.get('correo')?.touched && contactForm.get('correo')?.invalid">
+                    El campo correo es obligatorio y debe tener al menos 3 caracteres. 
+                </small>
             </div>
 
             <div class="mb-3">
-                <label for="telefono" class="form-label">Número de Contacto</label>
-                <input type="tel" class="form-control" id="telefono" placeholder="310 123 45 67" required>
-                <span id="error-telefono" class="invalid-feedback"></span>
+                <label class="form-label">Contacto</label>
+                <input type="text" class="form-control" formControlName="contacto">
+                <small class="text-danger" *ngIf="contactForm.get('contacto')?.touched && contactForm.get('contacto')?.invalid">
+                    El campo contacto es obligatorio y debe tener al menos 3 caracteres. 
+                </small>
             </div>
 
             <div class="mb-3">
-                <label for="descripcion" class="form-label">Descripción de la solicitud</label>
-                <textarea class="form-control" id="descripcion" rows="3" required></textarea>
-                <span id="error-descripcion" class="invalid-feedback"></span>
+                <label class="form-label">Descripción</label>
+                <input type="text" class="form-control" formControlName="descripcion">
+                <small class="text-danger" *ngIf="contactForm.get('descripcion')?.touched && contactForm.get('descripcion')?.invalid">
+                    El campo contacto es obligatorio y debe tener al menos 3 caracteres. 
+                </small>
             </div>
 
             <button type="submit" class="btn-enviar" id="btn-enviar">
@@ -59,10 +68,8 @@
             <button type="button" class="btn-cancelar" id="btn-cancelar">
                 Cancelar
             </button>
-        </div>
-    </form>
+        </form> </div>
 </div>
-
 <style>
 .invalid-feedback {
     color: red;
