@@ -60,7 +60,7 @@
 
                 <div class="mb-3">
                     <label class="form-label">Descripción</label>
-                    <input type="text" class="form-control" formControlName="descripcion">
+                    <input type="text" class="form-control" formControlName="descripcion" style="height: 100px;">
                     <small class="text-danger"
                         *ngIf="contactForm.get('descripcion')?.touched && contactForm.get('descripcion')?.invalid">
                         El campo descripción es obligatorio y debe tener al menos 3 caracteres.
