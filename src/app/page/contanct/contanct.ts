@@ -15,14 +15,14 @@ export class Contanct {
 
     constructor(private fb: FormBuilder) {
         this.contactForm = this.fb.group({
-            nombre: ['',[Validators.required, Validators.minLength(2)]],
+            nombre: ['', [Validators.required, Validators.minLength(2)]],
             correo: ['', [Validators.required, Validators.email]],
-            contacto: ['', Validators.required],
-            descripcion: ['', Validators.required, Validators.minLength(10)]
+            // APLICA LA CORRECCIÓN AQUÍ: Validators dentro de un array []
+            contacto: ['', [Validators.required, Validators.minLength(3)]],
+            descripcion: ['', [Validators.required, Validators.minLength(10)]] // ¡CORREGIDO!
         });
     }
 
-    // ¡FUNCIONES MOVIDAS DENTRO DE LA CLASE!
     onSubmit() {
         if (this.contactForm.valid) {
             const datos = this.contactForm.value;
