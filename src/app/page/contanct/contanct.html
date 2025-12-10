@@ -16,9 +16,9 @@
 
                     <h4 class="mt-4">Redes sociales:</h4>
                     <p><strong>Instagram: </strong> <a href=" https://instagram.com/sociedad.academica"
-                            target="_blank">@sociedad.academica</a></p>
+                                target="_blank">@sociedad.academica</a></p>
                     <p><strong>Facebook: </strong> <a href=" https://facebook.com/sociedad.academica"
-                            target="_blank">facebook.com/sociedad.academica</a></p>
+                                target="_blank">facebook.com/sociedad.academica</a></p>
                     <p class="text-muted"><small>— Sitio web o portafolio educativo www.sociedadacademica.edu.co</small>
                     </p>
                 </div>
@@ -34,40 +34,60 @@
                 <div class="mb-3">
                     <label class="form-label">Nombre y Apellidos</label>
                     <input type="text" class="form-control" formControlName="nombre">
+                    
                     <small class="text-danger"
-                        *ngIf="contactForm.get('nombre')?.touched && contactForm.get('nombre')?.invalid">
-                        El campo nombre es obligatorio y debe tener al menos 3 caracteres.
+                        *ngIf="contactForm.get('nombre')?.touched && contactForm.get('nombre')?.hasError('required')">
+                        El campo nombre es obligatorio.
+                    </small>
+                    <small class="text-danger"
+                        *ngIf="contactForm.get('nombre')?.touched && contactForm.get('nombre')?.hasError('minlength')">
+                        El nombre debe tener al menos 2 caracteres.
                     </small>
                 </div>
 
                 <div class="mb-3">
                     <label class="form-label">Correo Electronico</label>
                     <input type="text" class="form-control" formControlName="correo">
+
                     <small class="text-danger"
-                        *ngIf="contactForm.get('correo')?.touched && contactForm.get('correo')?.invalid">
-                        El campo correo es obligatorio y debe tener al menos 3 caracteres.
+                        *ngIf="contactForm.get('correo')?.touched && contactForm.get('correo')?.hasError('required')">
+                        El campo correo es obligatorio.
+                    </small>
+                    <small class="text-danger"
+                        *ngIf="contactForm.get('correo')?.touched && (contactForm.get('correo')?.hasError('email') || contactForm.get('correo')?.hasError('minlength'))">
+                        Debe ingresar un formato de correo electrónico válido y tener al menos 3 caracteres.
                     </small>
                 </div>
 
                 <div class="mb-3">
                     <label class="form-label">Contacto</label>
                     <input type="text" class="form-control" formControlName="contacto">
+
                     <small class="text-danger"
-                        *ngIf="contactForm.get('contacto')?.touched && contactForm.get('contacto')?.invalid">
-                        El campo contacto es obligatorio y debe tener al menos 3 caracteres.
+                        *ngIf="contactForm.get('contacto')?.touched && contactForm.get('contacto')?.hasError('required')">
+                        El campo contacto es obligatorio.
+                    </small>
+                    <small class="text-danger"
+                        *ngIf="contactForm.get('contacto')?.touched && contactForm.get('contacto')?.hasError('minlength')">
+                        El contacto debe tener al menos 3 caracteres.
                     </small>
                 </div>
 
                 <div class="mb-3">
                     <label class="form-label">Descripción</label>
                     <input type="text" class="form-control" formControlName="descripcion" style="height: 100px;">
+
+                    <small class="text-danger" 
+                        *ngIf="contactForm.get('descripcion')?.touched && contactForm.get('descripcion')?.hasError('required')">
+                        El campo descripción es obligatorio.
+                    </small>
                     <small class="text-danger"
-                        *ngIf="contactForm.get('descripcion')?.touched && contactForm.get('descripcion')?.invalid">
-                        El campo descripción es obligatorio y debe tener al menos 3 caracteres.
+                        *ngIf="contactForm.get('descripcion')?.touched && contactForm.get('descripcion')?.hasError('minlength')">
+                        La descripción debe tener al menos 10 caracteres.
                     </small>
                 </div>
 
-                <button type="submit" class="btn-enviar" id="btn-enviar" (click)="onSubmit()">
+                <button type="submit" class="btn-enviar" id="btn-enviar"> 
                     Enviar Solicitud
                 </button>
                 <button type="button" class="btn-cancelar" id="btn-cancelar" (click)="cancelar()">
@@ -81,10 +101,9 @@
             color: red;
             font-size: 0.875em;
             display: block;
-            /* Asegura que el error ocupe espacio */
             margin-top: 0.25rem;
             min-height: 1.25rem;
-            /* Reserva espacio para evitar saltos */
+            
         }
     </style>
 </body>
